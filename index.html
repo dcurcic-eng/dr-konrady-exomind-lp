@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exomind by Dr. Konrady | Magnetic-Pulse Brain Therapy</title>
+<meta name="description" content="Physician-led Exomind magnetic-pulse brain therapy in Harrisburg, SD. Six focused sessions, no medication, no downtime. New patients save 20%.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F7EFE5; --paper:#FFFCF7; --tan:#E8DCC8; --faint:#C9B89E;
+  --espresso:#2A1F17; --brown:#5C4633; --rust:#8A4A30;
+  --copper:#B86F4E; --copper-lt:#F0BD92; --green:#3F5340; --green-mid:#9CAA85; --green-rule:#6A7A56;
+  --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--espresso);background:var(--cream);width:100%;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1440px;margin:0 auto;padding:0 120px}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:2px;color:var(--rust);text-transform:uppercase}
+.eyebrow.lt{color:var(--copper-lt)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--espresso);line-height:1.15}
+.sec-title{font-size:32px;line-height:1.15}
+.body{font-size:16px;line-height:1.6;color:var(--brown)}
+.btn{font-family:var(--sans);font-size:15px;font-weight:600;border:none;cursor:pointer;border-radius:12px;padding:14px 24px;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s,background .25s}
+.btn-copper{background:var(--copper);color:var(--paper);box-shadow:0 1px 2px rgba(42,31,23,.05),0 2px 6px rgba(42,31,23,.06)}
+.btn-copper:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(184,111,78,.35)}
+.btn-dark{background:var(--espresso);color:var(--cream)}
+.btn-dark:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(42,31,23,.3)}
+.card{background:var(--paper);border-radius:20px;box-shadow:0 1px 2px rgba(42,31,23,.05),0 2px 6px rgba(42,31,23,.06)}
+.shadow-lg{box-shadow:0 4px 10px rgba(42,31,23,.06),0 12px 24px rgba(42,31,23,.05)}
+
+/* motion */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;z-index:50;transition:background .4s,box-shadow .4s,padding .4s}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:28px;padding-bottom:28px;transition:padding .4s}
+header.scrolled{background:rgba(42,31,23,.92);backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(42,31,23,.18)}
+header.scrolled .wrap{padding-top:16px;padding-bottom:16px}
+.logo{height:60px;width:auto}
+.nav{display:flex;align-items:center;gap:36px}
+.nav a{color:var(--cream);font-size:15px;font-weight:500;position:relative}
+.nav a.link:after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--copper-lt);transition:width .3s}
+.nav a.link:hover:after{width:100%}
+.pill{background:var(--copper);color:var(--paper);border-radius:24px;padding:12px 22px;font-weight:600;box-shadow:0 2px 6px rgba(42,31,23,.12);transition:transform .25s,box-shadow .25s}
+.pill:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(184,111,78,.4)}
+.menu-btn{display:none;background:none;border:none;cursor:pointer}
+.menu-btn svg{stroke:var(--cream)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;height:100vh;display:flex;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@keyframes heroZoom{to{transform:scale(1.02)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,31,23,0) 0%,rgba(42,31,23,.2) 55%,rgba(42,31,23,.55) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1440px;margin:0 auto;padding:0 120px;display:flex;flex-direction:column;justify-content:center;min-height:100vh}
+.hero-content{max-width:760px;display:flex;flex-direction:column;gap:20px;padding-top:60px}
+.hero h1{font-size:62px;font-weight:300;line-height:1.08;color:var(--cream)}
+.copper-underline{height:5px;width:0;border-radius:3px;background:linear-gradient(90deg,#8A4A30 0%,#B86F4E 35%,#F0BD92 70%,#F7EFE5 100%);transition:width 1s cubic-bezier(.16,1,.3,1) .5s}
+.copper-underline.in{width:220px}
+.hero .subhead{font-size:18px;line-height:1.6;color:var(--cream);max-width:560px}
+.cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:4px}
+.offer-chip{display:inline-flex;align-items:center;background:rgba(255,252,247,.1);border:1px solid rgba(240,189,146,.4);color:var(--copper-lt);border-radius:20px;padding:10px 16px;font-size:13px;font-weight:600}
+.trust{position:absolute;left:0;bottom:48px;z-index:2;width:100%;max-width:1440px;left:50%;transform:translateX(-50%);padding:0 120px;display:flex;gap:28px;flex-wrap:wrap}
+.trust span{color:var(--cream);font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:7px}
+.trust span:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--copper-lt)}
+
+/* generic section */
+section.pad{padding:80px 0}
+section.pad-lg{padding:96px 0}
+.bg-paper{background:var(--paper)}
+.bg-cream{background:var(--cream)}
+.bg-green{background:var(--green)}
+.head-block{display:flex;flex-direction:column;gap:12px;max-width:640px}
+
+/* ASSESSMENT */
+.assess-row{display:flex;gap:24px;align-items:flex-start;margin-top:32px}
+.assess-head{flex:0 0 560px;max-width:560px}
+.assess-head .proof{color:var(--rust);font-size:15px;font-weight:600;margin-top:4px}
+.quiz-card{flex:1;background:var(--paper);border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:20px}
+.quiz-top{display:flex;justify-content:space-between;align-items:center}
+.quiz-prog{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:1.5px;color:var(--rust)}
+.quiz-qlabel{font-size:13px;font-weight:500;color:var(--faint)}
+.quiz-question{font-family:var(--serif);font-size:22px;font-weight:500;line-height:1.25;color:var(--espresso)}
+.chips{display:flex;flex-direction:row;gap:12px}
+.chip{flex:1 1 0;min-width:0;background:var(--cream);border:1px solid var(--tan);border-radius:12px;padding:20px 14px;font-size:15px;font-weight:500;color:var(--espresso);cursor:pointer;transition:border-color .2s,background .2s,transform .15s,box-shadow .2s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;min-height:120px}
+.chip:hover{border-color:var(--copper);transform:translateY(-4px);box-shadow:0 8px 18px rgba(42,31,23,.1)}
+.chip.sel{border-color:var(--copper);background:#F6E7DC;box-shadow:inset 0 0 0 1px var(--copper)}
+.chip .tick{width:18px;height:18px;opacity:0;color:var(--copper)}
+.chip.sel .tick{opacity:1}
+.quiz-actions{display:flex;justify-content:flex-end}
+.progbar{height:4px;background:var(--tan);border-radius:4px;overflow:hidden}
+.progbar i{display:block;height:100%;background:var(--copper);width:25%;transition:width .45s cubic-bezier(.16,1,.3,1)}
+.quiz-stage{transition:opacity .35s,transform .35s}
+.quiz-stage.swap{opacity:0;transform:translateY(10px)}
+.result-ic{width:64px;height:64px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;color:#fff}
+.result-badge{align-self:flex-start;background:#F6E7DC;color:var(--rust);font-family:var(--mono);font-size:11px;letter-spacing:1.5px;padding:7px 12px;border-radius:20px}
+
+/* SCIENCE */
+.science-top{display:flex;gap:72px;align-items:center}
+.exomind-circle{flex:0 0 380px;width:380px;height:380px;border-radius:50%;background:url('images/exomind.jpg') center/cover;overflow:hidden}
+.science-copy{flex:1;display:flex;flex-direction:column;gap:20px}
+.science-copy .body{font-size:18px}
+.stats-row{display:flex;gap:24px;margin-top:8px}
+.stat{flex:1;display:flex;align-items:center;gap:16px;background:var(--paper);border-radius:20px;padding:28px}
+.icon-badge{flex:0 0 56px;width:56px;height:56px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;color:var(--paper)}
+.stat .num{font-family:var(--serif);font-size:30px;color:var(--espresso)}
+.stat .lbl{font-size:14px;line-height:1.4;color:var(--brown)}
+
+/* CONDITIONS */
+.mosaic{display:flex;gap:24px;margin-top:32px}
+.mosaic .left{flex:0 0 420px}
+.mosaic .right{flex:1;display:flex;flex-direction:column;gap:24px}
+.mrow{display:flex;gap:24px}
+.tile{position:relative;border-radius:20px;overflow:hidden;display:flex;align-items:flex-end;color:var(--cream)}
+.tile.big{height:512px}
+.tile.sm{height:244px;flex:1}
+.tile .timg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.tile:hover .timg{transform:scale(1.06)}
+.tile .tgrad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,31,23,0),rgba(42,31,23,.55))}
+.tile .cap{position:relative;z-index:2;padding:20px;display:flex;flex-direction:column;gap:4px}
+.tile .cnum{font-family:var(--serif);font-size:28px;color:var(--copper-lt)}
+.tile .cname{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--cream)}
+.tile .cdesc{font-size:13px;line-height:1.5;color:var(--tan)}
+
+/* SESSION STEPS */
+.steps{display:flex;gap:24px;margin-top:8px}
+.step{flex:1;display:flex;flex-direction:column;gap:16px}
+.step .photo{height:200px;border-radius:20px;background-size:cover;background-position:center}
+.step .badge{width:44px;height:44px;border-radius:50%;background:var(--copper);color:#1A130E;font-family:var(--serif);font-size:20px;font-weight:500;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:20px;font-weight:500}
+.step .body{font-size:14px;line-height:1.5}
+.emphasis{display:flex;justify-content:center;padding-top:16px}
+.emphasis p{font-family:var(--serif);font-size:28px;font-weight:300;color:var(--rust);text-align:center}
+
+/* EXPERIENCES */
+.exp-head{display:flex;justify-content:space-between;align-items:flex-end}
+.google-card{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border-radius:20px;padding:16px 24px}
+.google-card .gtext{font-size:16px;font-weight:600;color:var(--espresso)}
+.tests{display:flex;gap:24px;margin-top:8px}
+.test{flex:1;background:var(--paper);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:20px}
+.test .qtxt{font-size:16px;line-height:1.6;color:var(--espresso)}
+.who{display:flex;align-items:center;gap:12px}
+.who .av{width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center}
+.who .nm{font-size:15px;font-weight:600;color:var(--espresso)}
+.who .ct{font-size:13px;color:var(--brown)}
+.note{font-size:13px;color:var(--brown);margin-top:18px;font-style:italic}
+
+/* STORIES */
+.stories-row{display:flex;gap:24px;margin-top:8px}
+.video-tile{flex:1;position:relative;border-radius:28px;overflow:hidden;min-height:420px;display:flex;align-items:flex-end;color:var(--cream)}
+.video-tile .vimg{position:absolute;inset:0;background:url('images/client5.jpg') center/cover;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.video-tile:hover .vimg{transform:scale(1.05)}
+.video-tile .vgrad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,31,23,0),rgba(42,31,23,.55))}
+.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 8px 24px rgba(42,31,23,.3);transition:transform .3s}
+.video-tile:hover .play{transform:translate(-50%,-50%) scale(1.1)}
+.play svg{margin-left:4px}
+.video-tile .vcap{position:relative;z-index:2;padding:24px;font-family:var(--serif);font-size:22px}
+.photo-col{flex:0 0 380px;display:flex;flex-direction:column;gap:24px}
+.photo-col .pim{height:198px;border-radius:20px;background-size:cover;background-position:center}
+
+/* WHY */
+.why-row{display:flex;gap:24px;margin-top:32px;align-items:stretch}
+.diff-col{flex:1;display:flex;flex-direction:column;gap:24px}
+.diff{border-radius:20px;padding:28px;display:flex;gap:20px;align-items:flex-start}
+.diff .dn{font-family:var(--mono);font-size:28px;font-weight:500;color:var(--copper)}
+.diff h3{font-size:20px;font-weight:500;margin-bottom:6px}
+.diff .body{font-size:15px;line-height:1.55}
+.portrait{flex:0 0 380px;border-radius:28px;background:url('images/dr3.jpg') center/cover;min-height:480px}
+
+/* CONSULT */
+.cc-copy{display:flex;flex-direction:column;gap:20px;align-items:center;text-align:center;max-width:760px;margin:0 auto}
+.cc-copy h2{font-size:40px;color:var(--copper-lt)}
+.cc-copy .body{color:var(--cream);font-size:18px}
+.cc-row{display:flex;gap:32px;margin-top:8px;align-items:flex-start}
+.form-card{flex:0 0 540px;background:var(--cream);border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:20px;box-shadow:0 8px 20px rgba(42,31,23,.07),0 24px 48px rgba(42,31,23,.08)}
+.offer-banner{display:flex;align-items:center;gap:8px;background:var(--copper);color:var(--paper);border-radius:12px;padding:12px 20px;font-size:15px;font-weight:600}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:600;color:var(--espresso)}
+.field input,.field select{font-family:var(--sans);font-size:15px;color:var(--espresso);background:var(--paper);border:1px solid var(--faint);border-radius:8px;padding:12px 16px;outline:none;transition:border-color .2s,box-shadow .2s}
+.field input::placeholder{color:var(--brown);opacity:.7}
+.field input:focus,.field select:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(184,111,78,.15)}
+.consent{font-size:12px;line-height:1.5;color:var(--brown)}
+.right-col{flex:1;display:flex;flex-direction:column;gap:24px}
+.details-card{background:var(--cream);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:18px}
+.drow{display:flex;align-items:center;gap:12px}
+.drow .ib{flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:var(--paper);border:1px solid var(--faint);display:flex;align-items:center;justify-content:center;color:var(--copper)}
+.drow .dt{font-size:15px;font-weight:500;color:var(--espresso);line-height:1.4}
+.divider{height:1px;background:var(--faint)}
+.details-card .sub{font-size:14px;line-height:1.5;color:var(--brown)}
+.map-card{position:relative;height:340px;border-radius:20px;background:var(--tan);overflow:hidden}
+.road{position:absolute;background:var(--faint);border-radius:6px}
+.map-pin{position:absolute;width:44px;height:44px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 6px 16px rgba(42,31,23,.25);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.map-label{position:absolute;background:var(--paper);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;box-shadow:0 2px 6px rgba(42,31,23,.12)}
+
+/* FAQ */
+.faq-head{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.faq-list{max-width:840px;margin:0 auto;display:flex;flex-direction:column;gap:16px;width:100%}
+.faq{background:var(--cream);border-radius:20px;padding:24px;cursor:pointer}
+.faq .qrow{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq .q{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--espresso)}
+.faq .tog{flex:0 0 36px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .3s,transform .3s}
+.faq .tog{background:var(--paper);border:1.5px solid var(--copper);color:var(--copper)}
+.faq.open .tog{background:var(--copper);color:var(--paper);transform:rotate(180deg)}
+.faq .ans{font-size:16px;line-height:1.6;color:var(--brown);max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .4s,margin-top .4s}
+.faq.open .ans{max-height:300px;opacity:1;margin-top:14px}
+
+/* FOOTER */
+footer{background:var(--green);padding:64px 0}
+.foot-top{display:flex;gap:64px;flex-wrap:wrap}
+.foot-brand{flex:1;min-width:280px;display:flex;flex-direction:column;gap:16px}
+.foot-brand .logo{height:60px}
+.foot-brand .blurb{font-size:14px;line-height:1.6;color:var(--tan);max-width:320px}
+.foot-col{flex:0 0 200px;display:flex;flex-direction:column;gap:12px}
+.foot-col h4{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--copper-lt)}
+.foot-col a,.foot-col span{font-size:14px;color:var(--tan)}
+.foot-col a:hover{color:var(--copper-lt)}
+.foot-rule{height:1px;background:var(--green-rule);margin:40px 0}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot-bot .cpy{font-size:13px;color:#E8DCC8}
+.foot-bot a{font-size:13px;color:var(--copper)}
+.trademark{display:flex;gap:16px;align-items:flex-start;margin-top:40px}
+.trademark img{height:42px;width:auto}
+.trademark p{font-size:12px;line-height:1.5;color:#C9B89E}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .wrap,.hero-inner,.trust{padding-left:48px;padding-right:48px}
+  .hero h1{font-size:50px}
+  .science-top{gap:40px}
+  .exomind-circle{flex-basis:300px;width:300px;height:300px}
+}
+@media(max-width:900px){
+  .nav{display:none;position:fixed;top:0;right:0;height:100vh;width:74%;max-width:320px;background:rgba(42,31,23,.97);backdrop-filter:blur(8px);flex-direction:column;align-items:flex-start;justify-content:center;padding:40px;gap:28px;transform:translateX(100%);transition:transform .4s;z-index:60}
+  .nav.open{display:flex;transform:translateX(0)}
+  .menu-btn{display:block;z-index:61}
+  .assess-row,.science-top,.mosaic,.steps,.tests,.stories-row,.why-row,.cc-row{flex-direction:column}
+  .assess-head{flex-basis:auto;max-width:none}
+  .mosaic .left{flex-basis:auto}
+  .tile.big{height:360px}
+  .mrow{flex-direction:column}
+  .photo-col,.portrait,.form-card{flex-basis:auto;width:100%}
+  .stats-row{flex-wrap:wrap}
+  .stat{flex:1 1 100%}
+  .hero .subhead{max-width:none}
+}
+@media(max-width:560px){
+  .wrap,.hero-inner,.trust{padding-left:20px;padding-right:20px}
+  section.pad,section.pad-lg{padding:56px 0}
+  .hero h1{font-size:38px}
+  .hero .subhead{font-size:16px}
+  .sec-title{font-size:26px}
+  .cc-copy h2{font-size:30px}
+  .form-card,.quiz-card,.details-card{padding:24px}
+  .cta-row .btn,.cta-row .offer-chip{width:100%;text-align:center;justify-content:center}
+  .trust{position:static;transform:none;margin-top:28px;padding-bottom:0}
+  .hero-inner{padding-top:96px;padding-bottom:40px}
+  .hero{min-height:auto}
+  .foot-bot{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:760px){.chips{flex-direction:column}.chip{min-height:auto;flex-direction:row;justify-content:space-between;text-align:left}}
+
+/* ===== update overrides ===== */
+.hero-inner{justify-content:flex-start}
+.hero-content{padding-top:140px}
+.assess-row{flex-direction:column;align-items:stretch}
+.assess-head{flex:none;max-width:560px}
+.quiz-card{flex:none;width:100%}
+.stat{transition:transform .3s,box-shadow .3s}
+.stat .icon-badge{transition:box-shadow .3s}
+.stat:hover{transform:translateY(-6px);box-shadow:0 0 0 1px rgba(184,111,78,.4),0 16px 40px rgba(184,111,78,.32)}
+.stat:hover .icon-badge{box-shadow:0 0 20px rgba(240,189,146,.85)}
+.who .av{background-image:none;background:var(--copper);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;font-weight:500;flex:0 0 48px;letter-spacing:.5px}
+.video-tile .vimg{background:url('images/client1.jpg') center/cover}
+.diff h3{position:relative;display:inline-block}
+.diff h3:after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--copper);transition:width .35s cubic-bezier(.16,1,.3,1)}
+.diff:hover h3:after{width:100%}
+.name-row{display:flex;gap:14px}
+.name-row .field{flex:1;min-width:0}
+.field textarea{font-family:var(--sans);font-size:15px;color:var(--espresso);background:var(--paper);border:1px solid var(--faint);border-radius:8px;padding:12px 16px;outline:none;transition:border-color .2s,box-shadow .2s;resize:vertical;min-height:104px;width:100%}
+.field textarea::placeholder{color:var(--brown);opacity:.7}
+.field textarea:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(184,111,78,.15)}
+.foot-brand{align-items:flex-start}
+.foot-brand .logo{height:auto;width:210px;align-self:flex-start}
+.foot-brand .logo,.trademark img{transition:filter .35s;cursor:pointer}
+.foot-brand .logo:hover,.trademark img:hover{filter:drop-shadow(0 0 12px rgba(240,189,146,.8))}
+.vmodal{position:fixed;inset:0;z-index:100;background:rgba(26,19,14,.86);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s}
+.vmodal.open{display:flex;opacity:1}
+.vmodal-inner{position:relative;width:min(920px,100%)}
+.vmodal-inner video{width:100%;border-radius:16px;display:block;background:#000;max-height:80vh}
+.vmodal-close{position:absolute;top:-46px;right:0;background:none;border:none;color:#fff;font-size:36px;line-height:1;cursor:pointer}
+@media(max-width:560px){.name-row{flex-direction:column}.hero-content{padding-top:112px}}
+
+/* ===== update overrides 2 ===== */
+.hero-overlay{background:linear-gradient(180deg,rgba(26,19,14,.55) 0%,rgba(26,19,14,.15) 35%,rgba(26,19,14,.35) 72%,rgba(26,19,14,.62) 100%)}
+.hero h1{font-weight:500;text-shadow:0 2px 22px rgba(26,19,14,.55),0 1px 3px rgba(26,19,14,.45)}
+.hero .subhead{text-shadow:0 1px 10px rgba(26,19,14,.5)}
+.offer-chip{background:rgba(26,19,14,.55);border:1px solid rgba(240,189,146,.7);color:#F8E4CE;backdrop-filter:blur(4px)}
+.chip{min-height:0;padding:14px 12px;gap:8px;font-size:14px;border-radius:10px}
+.chip .tick{width:16px;height:16px}
+
+/* ===== overrides 3: quiz redesign + cards + ctas ===== */
+.quiz-top{align-items:baseline}
+.quiz-prog{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--rust)}
+.quiz-qlabel{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--faint);text-transform:uppercase;font-weight:400}
+.qsegs{display:flex;gap:6px}
+.qseg{flex:1;height:4px;border-radius:99px;background:var(--tan);transition:background .45s cubic-bezier(.16,1,.3,1)}
+.qseg.on{background:var(--copper)}
+.quiz-question{font-size:26px;line-height:1.25;letter-spacing:-.01em;margin-top:2px}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chip{flex:none;min-height:0;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;text-align:left;gap:14px;padding:16px 18px;background:var(--paper);border:1.5px solid var(--tan);border-radius:14px;cursor:pointer;font-family:var(--sans);transition:border-color .25s,background .25s,transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s}
+.chip:hover{border-color:var(--copper);transform:translateY(-2px);box-shadow:0 10px 24px rgba(184,111,78,.14)}
+.chip:active{transform:scale(.985)}
+.opt-ind{flex:0 0 30px;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--faint);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:500;color:var(--rust);background:transparent;transition:background .25s,border-color .25s,color .25s}
+.opt-lbl{font-size:15px;font-weight:500;color:var(--espresso);line-height:1.3}
+.chip.sel{border-color:var(--copper);background:#F8EADF;box-shadow:0 0 0 1.5px var(--copper),0 10px 24px rgba(184,111,78,.16)}
+.chip.sel .opt-ind{background:var(--copper);border-color:var(--copper);color:#fff}
+.quiz-actions{margin-top:4px;justify-content:flex-end}
+.btn:disabled{opacity:.45;pointer-events:none;cursor:not-allowed}
+.btn:active{transform:scale(.97)}
+/* science stat cards */
+.stat{background:var(--paper);border:1px solid rgba(42,31,23,.08);border-radius:22px;padding:30px;gap:20px;align-items:center}
+.stat .icon-badge{width:60px;height:60px;flex-basis:60px;background:linear-gradient(150deg,#C97E55,#A2542F);box-shadow:0 8px 20px rgba(184,111,78,.32)}
+.stat .num{font-size:42px;line-height:1;color:var(--espresso);letter-spacing:-.02em}
+.stat .lbl{font-size:13px;letter-spacing:.2px;color:var(--brown);margin-top:6px}
+.stat:hover{transform:translateY(-6px);box-shadow:0 0 0 1px rgba(184,111,78,.35),0 18px 44px rgba(184,111,78,.28)}
+/* your visit zoom */
+.step .photo{overflow:hidden;position:relative}
+.step .photo-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.step:hover .photo-img{transform:scale(1.09)}
+/* section ctas */
+.btn-outline{background:transparent;color:var(--copper);border:1.5px solid var(--copper)}
+.btn-outline:hover{background:var(--copper);color:var(--paper);transform:translateY(-3px);box-shadow:0 8px 22px rgba(184,111,78,.3)}
+.sec-cta{display:flex;margin-top:36px}
+.sec-cta.center{justify-content:center}
+@media(max-width:560px){.chips{grid-template-columns:1fr}.quiz-question{font-size:22px}.sec-cta .btn{width:100%;text-align:center;justify-content:center}}
+
+/* ===== overrides 4 ===== */
+.chips{margin-top:16px}
+.photo-col .pim{overflow:hidden;position:relative}
+.photo-col .pim-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .85s cubic-bezier(.16,1,.3,1)}
+.photo-col .pim:hover .pim-img{transform:scale(1.08)}
+.drow .dt a{color:inherit;text-decoration:none;transition:color .2s}
+.drow .dt a:hover{color:var(--copper)}
+.exomind-circle{position:relative;overflow:hidden;background:#E8DCC8}
+.exomind-circle .px-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform;transform:translate3d(0,0,0) scale3d(1.25,1.25,1)}
+@media(prefers-reduced-motion:reduce){.exomind-circle .px-img{transform:none}}
+
+/* ===== overrides 5 ===== */
+.quiz-question{margin-top:18px}
+.step h3{position:relative;display:inline-block}
+.step h3:after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--copper);transition:width .35s cubic-bezier(.16,1,.3,1)}
+.step:hover h3:after{width:100%}
+
+/* ===== overrides 6: quiz spacing fix ===== */
+.quiz-stage{display:flex;flex-direction:column;gap:20px;align-items:stretch}
+.quiz-stage .quiz-question{margin-top:10px}
+.quiz-stage .chips{margin-top:8px}
+.result-ic{flex:0 0 64px}
+.result-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:4px}
+
+/* ===== overrides 7: stat asterisk + note ===== */
+.numwrap{display:flex;align-items:flex-start;gap:3px}
+.ast{font-family:var(--sans);font-size:15px;font-weight:600;color:var(--copper);line-height:1}
+.stat-note{max-width:820px;margin-top:26px;font-size:13px;line-height:1.6;color:var(--brown)}
+.stat-note a{color:var(--rust);text-decoration:underline;text-underline-offset:2px;transition:color .2s}
+.stat-note a:hover{color:var(--copper)}
+
+/* ===== overrides 8: review card glow ===== */
+.test{transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
+.test:hover{transform:translateY(-6px);box-shadow:0 0 0 1px rgba(184,111,78,.35),0 18px 44px rgba(184,111,78,.28)}
+
+/* ===== overrides 9: FAQ section background ===== */
+#faq{background:url('images/Web-BG-5.webp') center center/cover no-repeat}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="wrap">
+    <a href="#top"><img class="logo" src="images/Konrady_Logo_Horizontal_Grad-LightLarge.webp" alt="Konrady Psychological Services"></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav" id="nav">
+      <a class="link" href="#science">Therapy</a>
+      <a class="link" href="#conditions">Conditions</a>
+      <a class="link" href="#reviews">Reviews</a>
+      <a class="pill" href="#consult">Book now</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <video class="hero-bg" id="heroBg" autoplay muted loop playsinline preload="auto"><source src="images/hero-video3.mp4" type="video/mp4"></video>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="eyebrow lt reveal">EXOMIND &middot; MAGNETIC-PULSE BRAIN THERAPY</span>
+      <h1 class="reveal">There is a way out of depression.</h1>
+      <div class="copper-underline" id="cu"></div>
+      <p class="subhead reveal">Exomind is magnetic-pulse brain therapy - six focused sessions, no medication, no downtime. New patients save 20%.</p>
+      <div class="cta-row reveal">
+        <a class="btn btn-copper" href="#assess">Discover Exomind</a>
+        <a class="btn btn-dark" href="#consult">Book a consultation</a>
+        <span class="offer-chip">20% off for new patients</span>
+      </div>
+    </div>
+  </div>
+  <div class="trust reveal">
+    <span>FDA Cleared</span><span>Board-Certified</span><span>Physician-Led</span><span>5.0&#9733; Google</span><span>Harrisburg, SD</span>
+  </div>
+</section>
+
+<!-- ASSESSMENT -->
+<section class="pad bg-cream" id="assess">
+  <div class="wrap">
+    <div class="assess-row">
+      <div class="assess-head head-block reveal">
+        <span class="eyebrow">60-SECOND ASSESSMENT</span>
+        <h2 class="sec-title">Could Exomind be right for you?</h2>
+        <p class="body">Four quick questions. No email required to see your result.</p>
+        <p class="proof">4,800+ assessments completed</p>
+      </div>
+      <div class="quiz-card shadow-lg reveal" id="quiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section class="pad-lg bg-cream" id="science">
+  <div class="wrap">
+    <div class="science-top">
+      <div class="exomind-circle reveal shadow-lg"><img class="px-img" src="images/exomind.jpg" alt="Exomind device"></div>
+      <div class="science-copy reveal">
+        <span class="eyebrow">THE SCIENCE</span>
+        <h2 class="sec-title" style="font-size:32px">A workout for the mind - no medication required.</h2>
+        <p class="body">Exomind delivers focused magnetic pulses to the dorsolateral prefrontal cortex (DLPFC), the brain region that regulates mood - using BTL's patented ExoTMS waveform. By gently re-activating these neural pathways, Exomind helps restore balance and emotional resilience, naturally and non-invasively.</p>
+        <a class="btn btn-copper" href="#consult" style="align-self:flex-start;margin-top:8px">Book a consultation</a>
+      </div>
+    </div>
+    <div class="stats-row" style="margin-top:56px">
+      <div class="stat reveal"><div class="icon-badge">__IC_HEART__</div><div><div class="numwrap"><span class="num" data-count="90" data-suffix="%">90%</span><sup class="ast">*</sup></div><div class="lbl">rate treatment comfortable</div></div></div>
+      <div class="stat reveal"><div class="icon-badge">__IC_ACT__</div><div><div class="num">0.2/10</div><div class="lbl">average discomfort</div></div></div>
+      <div class="stat reveal"><div class="icon-badge">__IC_TREND__</div><div><div class="numwrap"><span class="num" data-count="80" data-suffix="%">80%</span><sup class="ast">*</sup></div><div class="lbl">improved well-being at 3 months</div></div></div>
+    </div>
+    <p class="stat-note reveal">*In a peer-reviewed clinical study of ExoTMS - the technology inside EXOMIND - 90.9% of participants rated treatment comfortable (average discomfort 0.2 out of 10), and over 80% reported improved mood and mental well-being at three months. Published in the Journal of Psychiatry and Psychiatric Disorders; results based on BTL clinical data. <a href="https://www.thepmfajournal.com/industry-news/post/btl-exomind-publishes-a-new-clinical-paper" target="_blank" rel="noopener">Read the clinical paper</a> &middot; <a href="https://clinicaltrials.gov/study/NCT06899646" target="_blank" rel="noopener">Study NCT06899646</a>. Individual results may vary.</p>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section class="pad bg-cream" id="conditions">
+  <div class="wrap">
+    <div class="head-block reveal">
+      <span class="eyebrow">WHAT WE TREAT</span>
+      <h2 class="sec-title">Five conditions, one focused therapy.</h2>
+    </div>
+    <div class="mosaic">
+      <div class="left reveal">
+        <div class="tile big">
+          <div class="timg" style="background-image:url('images/condition-depression.jpg')"></div><div class="tgrad"></div>
+          <div class="cap"><span class="cnum">01</span><span class="cname">Depression</span><span class="cdesc">FDA-cleared primary indication. An alternative for adults who haven't found relief in medication.</span></div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="mrow">
+          <div class="tile sm reveal"><div class="timg" style="background-image:url('images/condition-anxiety.jpg')"></div><div class="tgrad"></div><div class="cap"><span class="cnum">02</span><span class="cname">Anxiety</span><span class="cdesc">Calms an overactive stress response and restores a steadier baseline.</span></div></div>
+          <div class="tile sm reveal"><div class="timg" style="background-image:url('images/condition-ocd.jpg')"></div><div class="tgrad"></div><div class="cap"><span class="cnum">03</span><span class="cname">OCD</span><span class="cdesc">Eases compulsive loops by strengthening impulse control and emotional regulation.</span></div></div>
+        </div>
+        <div class="mrow">
+          <div class="tile sm reveal"><div class="timg" style="background-image:url('images/condition-brain-fog.jpg')"></div><div class="tgrad"></div><div class="cap"><span class="cnum">04</span><span class="cname">Brain Fog</span><span class="cdesc">Sharpens focus, memory, and mental processing speed.</span></div></div>
+          <div class="tile sm reveal"><div class="timg" style="background-image:url('images/coindition-binge-eating.jpg')"></div><div class="tgrad"></div><div class="cap"><span class="cnum">05</span><span class="cname">Binge Eating</span><span class="cdesc">Strengthens self-control and quiets emotional cravings; pairs well after GLP-1 treatment.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="sec-cta center reveal"><a class="btn btn-outline" href="#consult">Book a free consultation</a></div>
+  </div>
+</section>
+
+<!-- SESSION -->
+<section class="pad-lg bg-paper" id="session">
+  <div class="wrap">
+    <div class="head-block reveal" style="margin-bottom:48px">
+      <span class="eyebrow">YOUR VISIT</span>
+      <h2 class="sec-title" style="font-size:34px">In and out in under 30 minutes.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="photo"><div class="photo-img" style="background-image:url('images/photo2.jpg')"></div></div><div class="badge">1</div><h3>Arrival &amp; Intake</h3><p class="body">A brief check-in and a few questions about how you've been feeling.</p></div>
+      <div class="step reveal"><div class="photo"><div class="photo-img" style="background-image:url('images/treatment1.jpg')"></div></div><div class="badge">2</div><h3>Precision Positioning</h3><p class="body">Dr. Konrady positions the applicator over the exact treatment target.</p></div>
+      <div class="step reveal"><div class="photo"><div class="photo-img" style="background-image:url('images/treatment2.jpg')"></div></div><div class="badge">3</div><h3>Active Stimulation</h3><p class="body">You relax while gentle magnetic pulses do the work. Most read or rest.</p></div>
+      <div class="step reveal"><div class="photo"><div class="photo-img" style="background-image:url('images/woman7.jpg')"></div></div><div class="badge">4</div><h3>Review &amp; Depart</h3><p class="body">A quick debrief, then you drive yourself home - no downtime, no recovery.</p></div>
+    </div>
+    <div class="emphasis reveal"><p>Under 30 minutes &middot; No anesthesia &middot; Drive yourself home.</p></div>
+    <div class="sec-cta center reveal"><a class="btn btn-copper" href="#consult">Book your visit</a></div>
+  </div>
+</section>
+
+<!-- EXPERIENCES / REVIEWS -->
+<section class="pad-lg bg-cream" id="reviews">
+  <div class="wrap">
+    <div class="exp-head reveal">
+      <div class="head-block" style="gap:14px">
+        <span class="eyebrow">PATIENT EXPERIENCES</span>
+        <h2 class="sec-title">Voices from our patients.</h2>
+      </div>
+      <a class="google-card" href="https://www.google.com/maps/search/Konrady+Psychological+Services+Harrisburg+SD" target="_blank" rel="noopener">__IC_STAR__<span class="gtext">5.0 &#9733; &middot; Google reviews</span></a>
+    </div>
+    <div class="tests">
+      <div class="test reveal">__IC_QUOTE__<p class="qtxt">The persons that worked here were top notch and very likeable. The tests were a little stiff but the both of them made it very bearable. They will take care of you! Coffee isn't bad either.</p><div class="who"><div class="av">SC</div><div><div class="nm">Sam Couch</div><div class="ct">Google review</div></div></div></div>
+      <div class="test reveal">__IC_QUOTE__<p class="qtxt">I'd put off getting help for years. I finally feel like myself again - calmer, clearer, and genuinely hopeful. Dr. Konrady never once rushed me.</p><div class="who"><div class="av">MR</div><div><div class="nm">Megan R.</div><div class="ct">Sioux Falls, SD</div></div></div></div>
+      <div class="test reveal">__IC_QUOTE__<p class="qtxt">Honestly, I almost cancelled my first appointment - I'm glad I didn't. The little things feel easier now, and I actually look forward to my mornings.</p><div class="who"><div class="av">DL</div><div><div class="nm">David L.</div><div class="ct">Tea, SD</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="pad bg-paper" id="stories">
+  <div class="wrap">
+    <div class="head-block reveal" style="margin-bottom:32px">
+      <span class="eyebrow">PATIENT STORIES</span>
+      <h2 class="sec-title">Progress you can feel.</h2>
+    </div>
+    <div class="stories-row">
+      <div class="video-tile reveal" id="videoTile" style="cursor:pointer"><div class="vimg"></div><div class="vgrad"></div><div class="play">__IC_PLAY__</div><div class="vcap">Watch: Exomind brought my joy back.</div></div>
+      <div class="photo-col reveal">
+        <div class="pim"><div class="pim-img" style="background-image:url('images/interior2.jpg')"></div></div>
+        <div class="pim"><div class="pim-img" style="background-image:url('images/photo1.jpg')"></div></div>
+      </div>
+    </div>
+    <div class="sec-cta center reveal"><a class="btn btn-copper" href="#consult">Start your story</a></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="pad bg-cream" id="why">
+  <div class="wrap">
+    <div class="head-block reveal" style="max-width:680px">
+      <span class="eyebrow">WHY DR. KONRADY</span>
+      <h2 class="sec-title">Physician-led care, grounded in honest evidence.</h2>
+    </div>
+    <div class="why-row">
+      <div class="diff-col">
+        <div class="diff reveal" style="background:var(--cream)"><span class="dn">01</span><div><h3>Physician-Led</h3><p class="body">Dr. Konrady personally oversees every session - never handed off to a technician.</p></div></div>
+        <div class="diff reveal" style="background:var(--tan)"><span class="dn">02</span><div><h3>Honest Evidence</h3><p class="body">We tell you what the research does and doesn't show, so your expectations stay grounded.</p></div></div>
+        <div class="diff reveal" style="background:var(--green-mid)"><span class="dn">03</span><div><h3>Integrative Care</h3><p class="body">Exomind works alongside therapy and the rest of your care, not in place of it.</p></div></div>
+      </div>
+      <div class="portrait reveal shadow-lg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION & CONTACT -->
+<section class="pad-lg bg-green" id="consult">
+  <div class="wrap">
+    <div class="cc-copy reveal">
+      <span class="eyebrow lt">GET STARTED</span>
+      <h2>Request your consultation.</h2>
+      <p class="body">New patients save 20% on their first Exomind series. Tell us a little about you and we'll reach out to schedule.</p>
+    </div>
+    <div class="cc-row" style="margin-top:40px">
+      <form class="form-card reveal" id="consultForm">
+        <div class="offer-banner">__IC_PCT__ New patients save 20%</div>
+        <div class="name-row">
+          <div class="field"><label>First name</label><input type="text" name="firstname" placeholder="Jane" required></div>
+          <div class="field"><label>Last name</label><input type="text" name="lastname" placeholder="Doe" required></div>
+        </div>
+        <div class="field"><label>Email</label><input type="email" name="email" placeholder="jane@example.com" required></div>
+        <div class="field"><label>Phone</label><input type="tel" name="phone" placeholder="(605) 000-0000"></div>
+        <div class="field"><label>Tell us your story</label><textarea name="message" rows="4" placeholder="Share a little about what you're experiencing and what you're hoping for."></textarea></div>
+        <button type="submit" class="btn btn-copper" style="justify-content:center">Request consultation</button>
+        <p class="consent">By submitting, you agree to be contacted by phone, text, or email about your consultation. Message &amp; data rates may apply; reply STOP to opt out. Your information is kept confidential under HIPAA.</p>
+      </form>
+      <div class="right-col">
+        <div class="details-card reveal">
+          <div class="drow"><div class="ib">__IC_PIN__</div><div class="dt">225 N Cliff Ave, Suite 4, Harrisburg, SD 57032</div></div>
+          <div class="drow"><div class="ib">__IC_PHONE__</div><div class="dt"><a href="tel:+16055256366">(605) 525-6366</a></div></div>
+          <div class="drow"><div class="ib">__IC_MAIL__</div><div class="dt"><a href="mailto:Info@DrKonrady.com">Info@DrKonrady.com</a></div></div>
+          <div class="drow"><div class="ib">__IC_CLOCK__</div><div class="dt">Mon-Fri 9:00 AM-5:00 PM &middot; Sat-Sun closed</div></div>
+          <div class="divider"></div>
+          <p class="sub">Free on-site parking directly in front of the entrance.</p>
+        </div>
+        <div class="map-card reveal">
+          <iframe title="Konrady Psychological Services location" src="https://www.google.com/maps?q=Konrady%20Psychological%20Services%2C%20225%20N%20Cliff%20Ave%20Suite%204%2C%20Harrisburg%2C%20SD%2057032&output=embed" width="100%" height="100%" style="border:0;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="pad-lg bg-paper" id="faq">
+  <div class="wrap">
+    <div class="faq-head reveal" style="margin-bottom:40px">
+      <span class="eyebrow">QUESTIONS</span>
+      <h2 class="sec-title">Frequently asked questions.</h2>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img class="logo" src="images/Konrady_Logo_Horizontal_Grad-LightLarge.webp" alt="Konrady Psychological Services">
+        <p class="blurb">Serving Harrisburg, Sioux Falls &amp; the greater Sioux Falls metro with physician-led Exomind therapy.</p>
+      </div>
+      <div class="foot-col"><h4>Contact</h4><a href="mailto:Info@DrKonrady.com">Info@DrKonrady.com</a><a href="tel:+16055256366">(605) 525-6366</a></div>
+      <div class="foot-col"><h4>Visit</h4><a href="#consult">Book now</a><span>Mon-Fri 9-5</span><span>225 N Cliff Ave, Harrisburg</span></div>
+    </div>
+    <div class="foot-rule"></div>
+    <div class="foot-bot">
+      <span class="cpy">&copy; 2026 Konrady Psychological Services. All rights reserved.</span>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="trademark">
+      <img src="images/btl-logo-lightblue.png" alt="BTL">
+      <p>EXOMIND and ExoTMS are trademarks of BTL. Exomind is FDA-cleared for the treatment of depression; other uses are adjunctive wellness applications. Individual results may vary. This is not medical advice.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="vmodal" id="vmodal"><div class="vmodal-inner"><button class="vmodal-close" id="vmodalClose" aria-label="Close">&times;</button><video id="vmodalVideo" controls playsinline><source src="images/exomind-testimonials.mp4" type="video/mp4"></video></div></div>
+
+<script>
+/* ---- inline icon SVGs (lucide) ---- */
+const IC={
+heart:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>',
+act:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>',
+trend:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+star:'<svg width="22" height="22" viewBox="0 0 24 24" fill="#B86F4E" stroke="#B86F4E" stroke-width="1.5" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+quote:'<svg width="24" height="24" viewBox="0 0 24 24" fill="#B86F4E"><path d="M9.5 5C6.5 5 4 7.5 4 10.5c0 2.6 1.9 4.7 4.4 4.9-.2 2-1.3 3.1-3 3.6L6 21c3.6-.7 6-3.7 6-8.2V10.5C12 7.5 12.5 5 9.5 5Zm9 0C15.5 5 13 7.5 13 10.5c0 2.6 1.9 4.7 4.4 4.9-.2 2-1.3 3.1-3 3.6L15 21c3.6-.7 6-3.7 6-8.2V10.5C21 7.5 21.5 5 18.5 5Z"/></svg>',
+play:'<svg width="24" height="26" viewBox="0 0 24 26" fill="#FFFCF7"><path d="M2 2.5 22 13 2 23.5Z"/></svg>',
+pct:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.5 11 4a2 2 0 0 1 1.4-.6H19A1.5 1.5 0 0 1 20.5 5v6.6A2 2 0 0 1 19.9 13l-7.5 7.5a2 2 0 0 1-2.8 0l-6.1-6.1a2 2 0 0 1 0-2.8Z"/><circle cx="16" cy="8" r="1.2" fill="currentColor" stroke="none"/></svg>',
+pin:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
+phone:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>',
+mail:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>',
+clock:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 7 12 12 15 13"/></svg>',
+check:'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+};
+document.body.innerHTML=document.body.innerHTML
+ .replace(/__IC_HEART__/g,IC.heart).replace(/__IC_ACT__/g,IC.act).replace(/__IC_TREND__/g,IC.trend)
+ .replace(/__IC_STAR__/g,IC.star).replace(/__IC_QUOTE__/g,IC.quote).replace(/__IC_PLAY__/g,IC.play)
+ .replace(/__IC_PCT__/g,IC.pct).replace(/__IC_PIN__/g,IC.pin).replace(/__IC_PHONE__/g,IC.phone)
+ .replace(/__IC_MAIL__/g,IC.mail).replace(/__IC_CLOCK__/g,IC.clock);
+
+/* ---- header scroll ---- */
+const hdr=document.getElementById('hdr');
+const heroBg=document.getElementById('heroBg');
+addEventListener('scroll',()=>{
+  hdr.classList.toggle('scrolled',scrollY>40);
+});
+
+/* ---- mobile menu ---- */
+const nav=document.getElementById('nav'),mb=document.getElementById('menuBtn');
+mb.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+/* ---- reveal on scroll ---- */
+const cu=document.getElementById('cu');
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*0.07)+'s';io.observe(el);});
+setTimeout(()=>cu&&cu.classList.add('in'),300);
+
+/* ---- count up ---- */
+const cio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,t=+el.dataset.count,sf=el.dataset.suffix||'';let n=0;const step=()=>{n+=Math.ceil(t/40);if(n>=t)n=t;el.textContent=n+sf;if(n<t)requestAnimationFrame(step);};step();cio.unobserve(el);}});},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* ---- FAQ ---- */
+const faqs=[
+ ["How many sessions will I need?","Most patients complete a series of six focused sessions. Many feel mentally stronger after the first; a full course builds lasting change."],
+ ["Does it hurt?","No. 90% of patients rate treatment comfortable, with an average discomfort of 0.2 out of 10 - typically a light tapping sensation on the scalp."],
+ ["Are there side effects?","Side effects are uncommon and mild - occasionally a brief, light scalp sensation or mild headache that resolves quickly. There is no sedation and no recovery period."],
+ ["Can I drive afterward?","Yes. There's no anesthesia and no downtime, so you can drive yourself home and return to your day right after each session."],
+ ["How is this different from traditional TMS?","Exomind uses BTL's patented ExoTMS waveform delivered in short, focused sessions. It's designed for comfort and convenience while targeting the same mood-regulating brain region."],
+ ["Is Exomind covered by insurance?","Coverage varies by plan and indication. Our team will review your options with you and explain costs clearly before you begin."]
+];
+const fl=document.getElementById('faqList');
+faqs.forEach((f,i)=>{
+ const d=document.createElement('div');d.className='faq';
+ d.innerHTML='<div class="qrow"><span class="q">'+f[0]+'</span><span class="tog">'+'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>'+'</span></div><div class="ans">'+f[1]+'</div>';
+ d.addEventListener('click',()=>{const open=d.classList.contains('open');document.querySelectorAll('.faq').forEach(x=>{x.classList.remove('open');x.querySelector('.tog').innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>';});if(!open){d.classList.add('open');d.querySelector('.tog').innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>';}});
+ fl.appendChild(d);
+});
+
+/* ---- QUIZ ---- */
+const QUIZ=[
+ {q:"Over the last two weeks, how often have you felt down, depressed, or hopeless?",a:["Not at all","Several days","More than half the days","Nearly every day"]},
+ {q:"Have you tried medication or therapy without finding lasting relief?",a:["Yes, more than once","Somewhat","No, haven't tried yet","Prefer not to say"]},
+ {q:"Which best describes what you'd most like to improve?",a:["Mood & depression","Anxiety & stress","Focus & brain fog","Something else"]},
+ {q:"When would you like to start therapy?",a:["As soon as possible","Within the next month","Just exploring options","Not sure yet"]}
+];
+const quizEl=document.getElementById('quiz');
+let qi=0, answers=[];
+function renderQuiz(){
+ const stage=document.createElement('div');stage.className='quiz-stage';
+ const total=QUIZ.length;
+ if(qi<total){
+  const Q=QUIZ[qi];
+  stage.innerHTML='<div class="qsegs">'+Array.from({length:total},function(_,j){return '<span class="qseg'+(j<=qi?' on':'')+'"></span>';}).join('')+'</div>'+
+   '<div class="quiz-top"><span class="quiz-prog">QUESTION '+(qi+1)+' / '+total+'</span><span class="quiz-qlabel">60-second assessment</span></div>'+
+   '<div class="quiz-question">'+Q.q+'</div>'+
+   '<div class="chips">'+Q.a.map((o,k)=>'<button type="button" class="chip" data-k="'+k+'"><span class="opt-ind">'+String.fromCharCode(65+k)+'</span><span class="opt-lbl">'+o+'</span></button>').join('')+'</div>'+
+   '<div class="quiz-actions"><button class="btn btn-copper" id="qnext" disabled>'+(qi===total-1?'See my result':'Next question')+'</button></div>';
+  quizEl.innerHTML='';quizEl.appendChild(stage);
+  const chips=stage.querySelectorAll('.chip'),nx=stage.querySelector('#qnext');
+  chips.forEach(c=>c.addEventListener('click',()=>{chips.forEach(x=>x.classList.remove('sel'));c.classList.add('sel');answers[qi]=+c.dataset.k;nx.disabled=false;}));
+  nx.addEventListener('click',()=>{stage.classList.add('swap');setTimeout(()=>{qi++;renderQuiz();},300);});
+ } else {
+  stage.innerHTML='<div class="result-ic">'+IC.check+'</div>'+
+   '<span class="result-badge">YOUR RESULT</span>'+
+   '<div class="quiz-question" style="font-size:24px">You may be a strong candidate for Exomind.</div>'+
+   '<p class="body">Based on your answers, your profile aligns with the patients who benefit most from physician-led Exomind therapy. The next step is a brief consultation with Dr. Konrady to confirm fit and answer your questions - with no obligation.</p>'+
+   '<div class="result-actions"><a class="btn btn-copper" href="#consult" id="qcta">Request your consultation</a><button class="btn" id="qretake" style="background:transparent;color:var(--rust);padding:6px 0">&#8592; Retake the assessment</button></div>';
+  quizEl.innerHTML='';quizEl.appendChild(stage);
+  stage.querySelector('#qretake').addEventListener('click',()=>{qi=0;answers=[];renderQuiz();});
+  stage.querySelector('#qcta').addEventListener('click',()=>{const f=document.getElementById('consultForm');setTimeout(()=>{const i=f.querySelector('input');i&&i.focus();},700);});
+ }
+}
+renderQuiz();
+
+/* ---- form ---- */
+document.getElementById('consultForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ this.innerHTML='<div class="offer-banner" style="justify-content:center">Thank you! We\'ll reach out shortly to schedule.</div><p class="body" style="text-align:center">A member of Dr. Konrady\'s team will contact you within one business day. For urgent help, call (605) 525-6366.</p>';
+});
+
+/* ---- story video modal ---- */
+(function(){var vt=document.getElementById('videoTile'),vm=document.getElementById('vmodal'),vv=document.getElementById('vmodalVideo'),vc=document.getElementById('vmodalClose');if(!vt||!vm)return;function closeV(){vm.classList.remove('open');try{vv.pause();}catch(e){}}vt.addEventListener('click',function(){vm.classList.add('open');try{vv.currentTime=0;vv.play();}catch(e){}});vc.addEventListener('click',closeV);vm.addEventListener('click',function(e){if(e.target===vm)closeV();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeV();});})();
+
+/* ---- scroll parallax-zoom (exomind) ---- */
+(function(){var imgs=[].slice.call(document.querySelectorAll('.px-img'));if(!imgs.length)return;if(matchMedia('(prefers-reduced-motion:reduce)').matches){imgs.forEach(function(i){i.style.transform='none';});return;}var sF=1.26,sT=1.0,par=0.06,ticking=false;function upd(){var vh=innerHeight;imgs.forEach(function(img){var r=img.parentElement.getBoundingClientRect();var pr=Math.max(0,Math.min(1,(vh-r.top)/(vh+r.height)));var sc=sF+(sT-sF)*pr;var y=(pr-0.5)*2*par*r.height;img.style.transform='translate3d(0,'+y.toFixed(2)+'px,0) scale3d('+sc.toFixed(4)+','+sc.toFixed(4)+',1)';});ticking=false;}function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(upd);}}addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);upd();})();
+</script>
+</body>
+</html>
