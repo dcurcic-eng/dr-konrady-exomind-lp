@@ -406,6 +406,10 @@ footer{background:var(--green);padding:64px 0}
 .trust-bar .ti svg{stroke:var(--copper);flex:0 0 auto}
 @media(max-width:900px){.nav-phone{font-size:18px}.trust-bar{justify-content:flex-start}}
 @media(max-width:560px){.hero-quote{margin-top:20px}.hero-quote .hq-text{font-size:17px}}
+.benefit-form__error{display:none;font-size:13px;font-weight:600;line-height:1.5;color:#a33a2a;background:rgba(184,111,78,.1);border:1px solid rgba(163,58,42,.3);border-radius:10px;padding:10px 14px}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+.form-success-message{flex:0 0 540px;background:var(--cream);border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:20px;box-shadow:0 8px 20px rgba(42,31,23,.07),0 24px 48px rgba(42,31,23,.08)}
+@media(max-width:900px){.form-success-message{flex-basis:auto;width:100%;padding:24px}}
 .faq.open .ans{max-height:460px}
 .hero-content{padding-top:0}
 .hero-main{display:flex;flex-direction:column;gap:20px}
@@ -672,16 +676,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="body">Most major insurance plans accepted. Tell us a little about you and we'll reach out to schedule.</p>
     </div>
     <div class="cc-row" style="margin-top:40px">
-      <form class="form-card reveal" id="consultForm">
+      <form class="form-card reveal staff-benefit-form benefit-form" id="consultForm">
         <div class="offer-banner">__IC_SHIELD__ Most major insurance plans accepted</div>
         <div class="name-row">
-          <div class="field"><label>First name</label><input type="text" name="firstname" placeholder="Jane" required></div>
-          <div class="field"><label>Last name</label><input type="text" name="lastname" placeholder="Doe" required></div>
+          <div class="field benefit-form__field">
+            <label for="first_name" class="benefit-form__label">First name</label>
+            <input id="first_name" name="first_name" type="text" placeholder="Jane" required class="benefit-form__input">
+          </div>
+          <div class="field benefit-form__field">
+            <label for="last_name" class="benefit-form__label">Last name</label>
+            <input id="last_name" name="last_name" type="text" placeholder="Doe" required class="benefit-form__input">
+          </div>
         </div>
-        <div class="field"><label>Email</label><input type="email" name="email" placeholder="jane@example.com" required></div>
-        <div class="field"><label>Phone</label><input type="tel" name="phone" placeholder="(605) 000-0000"></div>
-        <div class="field"><label>Message (optional)</label><textarea name="message" rows="4" placeholder="Share a little about what you're experiencing and what you're hoping for."></textarea></div>
-        <button type="submit" class="btn btn-copper" style="justify-content:center">Submit</button>
+        <div class="field benefit-form__field">
+          <label for="email" class="benefit-form__label">Email</label>
+          <input id="email" name="email" type="email" placeholder="jane@example.com" required class="benefit-form__input">
+        </div>
+        <div class="field benefit-form__field">
+          <label for="phone" class="benefit-form__label">Phone</label>
+          <input id="phone" name="phone" type="tel" placeholder="(605) 000-0000" required class="benefit-form__input">
+        </div>
+        <div class="field benefit-form__field">
+          <label for="message" class="benefit-form__label">Message (optional)</label>
+          <textarea id="message" name="message" rows="4" placeholder="Share a little about what you're experiencing and what you're hoping for." class="benefit-form__input"></textarea>
+        </div>
+        <div id="form-error" class="benefit-form__error" role="alert" aria-live="polite"></div>
+        <button type="submit" class="btn btn-copper submit-btn form-submit-button" style="justify-content:center">Submit</button>
         <p class="form-note">We'll reach out within one business day to schedule your free consultation.</p>
         <div class="trust-bar">
           <span class="ti">__IC_SHIELD__HIPAA compliant</span>
@@ -844,10 +864,109 @@ function renderQuiz(){
 renderQuiz();
 
 /* ---- form ---- */
-document.getElementById('consultForm').addEventListener('submit',function(e){
- e.preventDefault();
- this.innerHTML='<div class="offer-banner" style="justify-content:center">Thank you! We\'ll reach out shortly to schedule.</div><p class="body" style="text-align:center">A member of Dr. Konrady\'s team will contact you within one business day. For urgent help, call (605) 566-4665.</p>';
-});
+(function () {
+  const forms = document.querySelectorAll('.staff-benefit-form');
+
+  forms.forEach((form) => {
+    const submitBtn = form.querySelector('.submit-btn');
+    const errEl = form.querySelector('#form-error');
+
+    function showError(msg) {
+      if (!errEl) return;
+      errEl.textContent = msg;
+      errEl.style.display = msg ? 'block' : 'none';
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      showError('');
+      submitBtn.disabled = true;
+
+      const first_name = form.querySelector('#first_name').value?.trim() || '';
+      const last_name = form.querySelector('#last_name').value?.trim() || '';
+      const email = form.querySelector('#email').value?.trim() || '';
+      const phoneRaw = form.querySelector('#phone').value?.trim() || '';
+      const message = form.querySelector('#message').value?.trim() || '';
+      const checkbox = 'on';
+
+      const emailRe = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+      if (!emailRe.test(email)) {
+        showError('Please enter a valid email address.');
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const phone = phoneRaw.replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '');
+      const phoneRe = /^[0-9]{10}$/;
+      if (!phoneRe.test(phone)) {
+        showError('Please enter a 10-digit US phone number.');
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const fd = new FormData();
+      fd.append('first_name', first_name);
+      fd.append('last_name', last_name);
+      fd.append('phone', `+1${phone}`);
+      fd.append('email', email);
+      fd.append('checkbox', checkbox);
+      fd.append('organization', '3583146a-e81f-4823-9eb2-b0a3bed6837f');
+      fd.append('form', '536');
+      fd.append('message', message);
+      fd.append('form_location', window.location.href);
+
+      // Detect ad tracking params from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const trackingMap = {
+        gclid: 'google',
+        wbraid: 'google',
+        gbraid: 'google',
+        fbclid: 'meta',
+        ttclid: 'tiktok',
+      };
+      let trackingParam = '';
+      let adSource = 'other';
+      for (const [param, source] of Object.entries(trackingMap)) {
+        const val = urlParams.get(param);
+        if (val) {
+          trackingParam = val;
+          adSource = source;
+          break;
+        }
+      }
+      fd.append('tracking_param', trackingParam);
+      fd.append('ad_source', adSource);
+
+      try {
+        const res = await fetch(
+          'https://api.aevadigital.com/api/v1/contacts/add_contact_from_form/',
+          {
+            method: 'POST',
+            body: fd,
+          }
+        );
+
+        if (!res.ok) {
+          const txt = await res.text().catch(() => res.statusText);
+          throw new Error(txt || 'Server error');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'event': 'form-success' });
+
+        form.style.display = 'none';
+        const thankYou = document.createElement('div');
+        thankYou.className = 'form-success-message';
+        thankYou.innerHTML = '<div class="offer-banner" style="justify-content:center">Thank you! We\'ll reach out shortly to schedule.</div><p class="body" style="text-align:center">A member of Dr. Konrady\'s team will contact you within one business day. For urgent help, call (605) 566-4665.</p>';
+        form.parentNode.insertBefore(thankYou, form.nextSibling);
+      } catch (err) {
+        console.error(err);
+        showError('Submission failed - please try again.');
+        submitBtn.disabled = false;
+      }
+    });
+  });
+})();
 
 /* ---- video modal (patient stories + Dr. Konrady commercial) ---- */
 (function(){var vm=document.getElementById('vmodal'),vv=document.getElementById('vmodalVideo'),vc=document.getElementById('vmodalClose');if(!vm||!vv)return;var src=vv.querySelector('source');function openV(url){if(url&&src&&src.getAttribute('src')!==url){src.setAttribute('src',url);vv.load();}vm.classList.add('open');try{vv.currentTime=0;vv.play();}catch(e){}}function closeV(){vm.classList.remove('open');try{vv.pause();}catch(e){}}var vt=document.getElementById('videoTile');if(vt)vt.addEventListener('click',function(){openV('images/exomind-testimonials.mp4');});document.querySelectorAll('[data-video]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();openV(el.getAttribute('data-video'));});});vc.addEventListener('click',closeV);vm.addEventListener('click',function(e){if(e.target===vm)closeV();});document.addEventListener('keydown',function(e){if(e.key==='Escape')closeV();});})();
